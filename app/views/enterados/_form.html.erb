@@ -1,0 +1,32 @@
+<%= form_for(enterado) do |f| %>
+  <% if enterado.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(enterado.errors.count, "error") %> prohibited this enterado from being saved:</h2>
+
+      <ul>
+      <% enterado.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :enterado %>
+    <%= f.text_field :enterado %>
+  </div>
+
+  <div class="field">
+    <%= f.label :post_id %>
+    <%= f.text_field :post_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :user_id %>
+    <%= f.text_field :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,2 @@
+class Enterado < ApplicationRecord
+end

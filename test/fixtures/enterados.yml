@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  enterado: MyString
+  post_id: MyString
+  user_id: MyString
+
+two:
+  enterado: MyString
+  post_id: MyString
+  user_id: MyString

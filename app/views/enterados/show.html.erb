@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Enterado:</strong>
+  <%= @enterado.enterado %>
+</p>
+
+<p>
+  <strong>Post:</strong>
+  <%= @enterado.post_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @enterado.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_enterado_path(@enterado) %> |
+<%= link_to 'Back', enterados_path %>

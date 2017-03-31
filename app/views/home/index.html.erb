@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Válida un conductor</title>
+	 <link href="http://res.cloudinary.com/dnubgpeun/raw/upload/v1461709940/css/dialog.css" rel="stylesheet" type="text/css"/>
+            <!-- individual effect -->
+            <link href="http://res.cloudinary.com/dnubgpeun/raw/upload/v1461709940/css/dialog-cathy.css" rel="stylesheet" type="text/css"/>
+            <script src="http://res.cloudinary.com/dnubgpeun/raw/upload/v1461709980/js/modernizr.custom.js">
+            </script>
+            <link href="https://res.cloudinary.com/dnubgpeun/raw/upload/v1447735152/animate.min.css" rel="stylesheet"/>
+            <link href="https://res.cloudinary.com/dnubgpeun/raw/upload/v1447735249/style.min.css" rel="stylesheet"/>
+            <link href="https://res.cloudinary.com/dnubgpeun/raw/upload/v1447734729/bootstrap.min.css" rel="stylesheet"/>
+            <link href="http://res.cloudinary.com/dnubgpeun/raw/upload/v1461709940/css/dialog.css" rel="stylesheet" type="text/css"/>
+            <!-- individual effect -->
+            <link href="http://res.cloudinary.com/dnubgpeun/raw/upload/v1461709940/css/dialog-cathy.css" rel="stylesheet" type="text/css"/>
+            <script src="https://res.cloudinary.com/dnubgpeun/raw/upload/v1447733251/bootstrap.min.js">
+            </script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js">
+            </script>
+</head>
+<style type="text/css">
+body{
+  margin: 0;
+  padding: 0;	
+}
+.main{
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: column;
+
+}
+.cover{
+    display: flex;
+    width: 100%;
+    height: 50px;
+    justify-content: center;
+	background-color: black;
+	color: white;
+}
+.contenedor{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.columnas{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	 width: 50%;
+}
+.form_contenedor{
+	padding: 15px;
+    display: flex;
+    width: 100%;
+   
+}
+.campo_busqueda{
+	width: 100%;
+	padding: 10px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-style: none;
+    background-color:hsl(204, 12%, 92%);
+	border-color: hsl(192, 8%, 37%);
+	font-size: 16px;
+	font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	transition:.1s;
+}
+.campo_busqueda:focus{
+	width: 100%;
+	padding: 10px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px; 
+    border-color: hsl(192, 8%, 37%);
+	border:2px solid hsl(204, 12%, 92%);
+	font-size: 16px;
+    opacity: .75;
+    background-color: white;
+	font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+
+}
+.busqueda{
+	display: flex;
+	width: 100%;
+	justify-content: center;
+}
+.resultados{
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+}
+.descripcion_label{
+	text-align : justify;
+	font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 12px;
+	font-weight: 400;
+	color: hsl(200, 9%, 48%);
+	box-sizing: border-box;
+	margin-top: 10px!important;
+}
+.btn_buscar{
+	background-color: #00A8E8;
+	width: 30%;
+	border-style: none;
+	font-size: 20px;
+	color: white;
+}
+.contenedor_resultados_info{
+	width: 100%;
+	border-style: none;
+	border-size:1px;
+	border-color: hsl(165, 8%, 31%);
+	padding: 30px;
+	border-radius: 5px;
+	background-color:  hsl(195, 29%, 97%);
+	margin-bottom: 5px;
+
+}
+.btn_buscar:focus {
+    outline: 0;
+}
+.campo_busqueda:focus {
+    outline: 0;
+}
+.btn_registra{
+	margin-top: 20px;
+	background-color: #2EC4B6;
+	color: white;
+	border-radius: 5px;
+	border-style: none;
+	padding: 10px;
+	font-size: 16px;
+}
+.btn_registra:focus{ outline: 0;}
+
+strong{
+	color: hsl(208, 12%, 25%);
+}
+.contenedor_resultados{
+	width: 100%;
+	 
+}
+.contenedor_resultados_info:hover{
+transition: background-color 200ms ease-in-out, opacity 200ms ease-in-out;
+background-color:  hsl(195, 29%, 97%);
+cursor: pointer;
+
+}
+.avatar{
+  width: 64px;
+  height: 64px;
+  opacity: .99;
+  border-radius: 50%;
+  transform: scale(.7);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.publicado{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	width: 100%;
+	height: 100%;
+	justify-content: flex-start;
+	align-items: center;
+}
+.boton_facebook{
+	display: flex;
+	padding: 10px;
+	background-color: #003459;
+	color: white!important;
+	font-size: 18px;
+	font-weight: 450;
+	justify-content: center;
+	text-decoration: none!important;
+
+}
+a{
+	text-decoration: none;
+}
+.image{
+	display: flex;
+    flex-flow: row nowrap;
+    align-content: center;
+    align-self: center;
+    width: 50%;
+    max-height: 500px;
+    border-radius: 5px;
+}
+.currentuser{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	width: 100%;
+	justify-content: flex-end;
+	align-items: center;
+
+}
+.usuario{
+	color: white;
+}
+.salir{
+	padding-left: 10px;
+	padding-right: 10px;
+	color: white!important;
+	text-decoration: none!important;
+	font-weight: 500;
+}
+.name{
+	color: #FF6B6B;
+	font-weight: 400;
+}
+.brand{
+	display: flex;
+	width: 100%;
+	justify-content: flex-start;
+	align-items: center;
+	padding-left: 5%;
+	font-weight: 500;
+}
+.footer_post{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	margin-top: 30px;
+}
+.like{
+  margin-right: 10px;
+  border-radius: 5px;
+  color: hsl(218, 7%, 32%);
+  background-color: hsl(220, 20%, 97%);
+  border-style: none;
+  font-weight: 400;
+}
+.like:focus{ outline: 0;}
+.like:hover{ 
+	transition: background-color 200ms ease-in-out, opacity 200ms ease-in-out;
+	background-color: #A8DADC;
+	color: white;
+}
+.comment{
+  margin-right: 10px;
+  border-radius: 5px;
+  color: hsl(218, 7%, 32%);
+  background-color: hsl(220, 20%, 97%);
+  border-style: none;
+  font-weight: 400;
+}
+.comment:focus{ outline: 0;}
+.comment:hover{ 
+	transition: background-color 200ms ease-in-out, opacity 200ms ease-in-out;
+	background-color: #A8DADC;
+	color: white;
+}
+</style>
+<body>
+	<div class="main">
+		<header class="cover">
+		 <div class="brand">Comunidad Manejando</div>
+		<% if user_signed_in? %>
+		 <div class="currentuser">
+		  <strong class="usuario"><%= current_user.email %> </strong>.
+		  |
+		  <%= link_to " Salir", destroy_user_session_path, method: :delete, :class => 'salir'  %>
+		  </div>
+		<% else %>
+		<% end %>
+		</header>
+	<div class="contenedor">
+
+		<div id="busqueda" class="busqueda"></div>
+	</div>
+	</div>
+</body>
+</html>
+<script type="text/jsx">
+	var socket = io.connect('https://server-node-01.herokuapp.com/');
+	var url = ""
+	var CampoBusqueda = React.createClass({
+		getInitialState: function() {
+	        return {
+	          etiqueta: "",
+	          data: [],
+	          name: "",
+	          conteo: ""
+	        }
+	    },
+	    componentDidMount: function(event) {
+	        /* socket.on('conteo', this.confirma);
+	        socket.on('nuevo', this.confirma);
+	        socket.on('comentario', this.confirma); */
+        	$.ajax({
+              url: "/api/v1/buscar_chofer?q=",
+              dataType: 'json',
+              success: function(data) {   
+                if(data == null || data == []){
+                   this.setState({data: ""});        
+                }
+                else{
+                  this.setState({data: data});
+                }      
+              }.bind(this)
+         });
+   		},
+   		enterado: function(postid,userid){
+   		  
+			var datos = {userid: userid}
+		    $.ajax({
+		            type: 'post',
+		            url: "/api/v1/enterado?postid=" + postid,
+		            data: JSON.stringify(datos),
+		            contentType: "application/json; charset=utf-8",
+		            traditional: true,
+		            success: function (data) {
+		               socket.on('conteo',conteo(postid));
+		            }
+		        });
+   		},
+   		confirma: function() {
+	        $.ajax({
+	              url: "/api/v1/buscar_chofer?q=",
+	              dataType: 'json',
+	              success: function(data) {   
+	                if(data == null || data == []){
+	                   this.setState({data: ""});        
+	                }
+	                else{
+	                  this.setState({data: data});
+	           
+	                }
+	                     
+	              }.bind(this)
+
+	        });
+        },	
+        
+		enviar: function(e){
+			$.ajax({
+            url: "/api/v1/buscar_chofer?q=" + this.state.name,
+            dataType: 'json',
+            success: function(data) {
+                if (data == null || data == []) {
+                    this.setState({
+                        data: ""
+                    });
+                } else {
+                    this.setState({
+                        data: data
+                    });
+                    
+                }
+            }.bind(this)
+        	});
+		},
+		busqueda: function(event) {
+          this.setState({name: event.target.value});
+        },
+        
+		render: function(){
+		    var b = this.enterado
+		    var c = this.state.conteo
+		    var x = this.conteo
+			var items = this.state.data.map(function(object){
+			   conteo(object.id);
+			   return <div className="contenedor_resultados">
+							<div className="contenedor_resultados_info">
+							<div className="publicado">
+								<img className="avatar" src={object.avatar}/>
+								<div>Publicado por {object.user_name} </div>	
+							</div>
+								<div><strong>Nombre del Chofer</strong><div className="name">{object.nombre}</div></div>
+								<strong>{object.estado}</strong><br></br>
+								<strong>Plataforma {object.plataforma}</strong>
+								<br></br>
+								<span className="descripcion_label">{object.descripcion}</span>
+								<img src={object.photo} className="image"/>
+								<div className="footer_post">
+								<% if user_signed_in? %>
+									<button className="like" onClick={b.bind("postid, userid", object.id,  <%= current_user.id %>)}><i className="fa fa-check" aria-hidden="true"></i> Enterado <span id={object.id}></span></button>
+									<button className="comment" data-toggle="modal" data-target="#myModal2"><i className="fa fa-comments" aria-hidden="true"></i> Comentar</button>
+								<% end %>
+								</div>
+							</div>
+						</div>
+			 });
+
+			return (
+				<div className="columnas">
+				<button className="btn_registra" data-toggle="modal" data-target="#myModal1">Registra un mal chofer</button>
+				<h3> O </h3>
+
+				<div className="form_contenedor">	
+					<input type="text" name="buscar" value={this.props.value} className="campo_busqueda" onChange={this.busqueda} placeholder="Válida a un mal chofer" />
+					<button className="btn_buscar" onClick={this.enviar}><i className="fa fa-search" aria-hidden="true"></i></button>
+				</div>
+				<h3>Ultimos choferes registrados</h3>
+					<div className="resultados">{items}</div>
+				 <div className="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				        <div className="modal-dialog" role="document">
+				          <div className="modal-content">
+				            <div className="modal-header">
+				              <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				              <h4 className="modal-title" id="myModalLabel">Registro de Chofer</h4>
+				            </div>
+				            <div className="modal-body">
+				            <% if user_signed_in? %>
+				             <form class="new_driver" id="new_driver" encType="multipart/form-data" action="/drivers" accept-charset="UTF-8" method="post">
+				             <input name="utf8" type="hidden" value="✓" />
+				             
+
+							  <div class="field">
+							    <label for="driver_name">Nombre completo del chofer</label>
+							    <input type="text" name="driver[name]" id="driver_name" className="form-control" />
+							  </div>
+
+							  <div class="field">
+							    <label for="driver_description">Descripción</label>
+							    <textarea rows="5" cols="50" name="driver[description]" id="driver_description" className="form-control">
+							    </textarea>
+							    
+							  </div>
+
+							  <div class="field">
+							    <label for="driver_estado">Estado</label>
+							    <input type="text" name="driver[estado]" id="driver_estado" className="form-control" placeholder="Queretaro"/>
+							  </div>
+							  <div class="field">
+							   <label for="driver_translation missing: en.form_foto_dg">
+							   	Subir una foto
+							   </label><br/>
+							    <input type="hidden" value="" name="driver[photo]" id="driver_photo"/>
+							    <input class="form-control " type="file" name="driver[photo]" id="driver_photo"/>
+							    <input type="hidden" name="driver[remote_photo_url]" id="driver_remote_photo_url"/>  
+							  </div>
+							  <div class="field">
+							    <label for="driver_plataforma">Plataforma</label>
+							    <input type="text" name="driver[plataforma]" id="driver_plataforma" className="form-control" placeholder="Uber, Cabify, EasyTaxi etc" />
+							  </div>
+							  <div class="field">
+			
+							    <input type="hidden" name="driver[user_id]" id="driver_user_id" value="<%= current_user.id%>" />
+							  </div>
+							<div className="modal-footer">
+							  <div class="actions">
+							    <input type="submit" name="commit" value="Postear" data-disable-with="Postear" className="btn_registra"/>
+							  </div>
+							 </div>
+							</form>
+							
+							<% else %>
+							 <%= link_to '<i className="fa-facebook-official"></i> Iniciar sesión con facebook'.html_safe, "/users/auth/facebook", :className => 'boton_facebook' %> 
+						
+							<% end %>
+				            </div>
+				           
+				          </div>
+				        </div>
+				</div>
+				 <div className="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				        <div className="modal-dialog" role="document">
+				          <div className="modal-content">
+				            <div className="modal-header">
+				              <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				              <h4 className="modal-title" id="myModalLabel">Comentar</h4>
+				            </div>
+				            <div className="modal-body">
+				            
+				            </div>
+				          
+				        </div>
+				        </div>
+				</div>
+			</div>
+				
+			)
+	
+		}
+	});
+	React.render(<CampoBusqueda/> , document.getElementById('busqueda')); 
+</script>
+<script type="text/javascript">
+	function conteo(postid) {
+        	$.ajax({
+              url: "/api/v1/conteo?postid=" + postid,
+              dataType: 'json',
+              success: function(request) {  
+                $("#" + postid + "").text(request.conteo);      
+              }
+       		 });
+   		}
+</script>
