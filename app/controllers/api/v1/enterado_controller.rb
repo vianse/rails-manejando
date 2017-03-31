@@ -8,7 +8,7 @@ class Api::V1::EnteradoController <ApplicationController
 	 	:post_id => params[:postid],
 	 	:user_id => params[:userid]
 	 	})
-	 	coneccion = Redis.new
+	 	coneccion = Redis.new(:host => "redis-18013.c13.us-east-1-3.ec2.cloud.redislabs.com", :port => 18013)
 	 	obj = {:conteo => 1}
 	 	coneccion.publish "conteo", obj.to_json
  	else

@@ -29,7 +29,7 @@ class DriversController < ApplicationController
 
     respond_to do |format|
       if @driver.save
-        coneccion = Redis.new
+    coneccion = Redis.new(:host => "redis-18013.c13.us-east-1-3.ec2.cloud.redislabs.com", :port => 18013)
         obj = {:nuevo => 1}
         coneccion.publish "nuevo", obj.to_json
         format.html { redirect_to "/", notice: 'Driver was successfully created.' }
