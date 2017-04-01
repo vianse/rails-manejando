@@ -468,7 +468,28 @@ a{
 				              <h4 className="modal-title" id="myModalLabel">Comentar</h4>
 				            </div>
 				            <div className="modal-body">
-				            
+				            <%= form_for(@comentario) do |f| %>
+					
+							  <div class="field">
+							    <%= f.label :comentario %>
+							    <%= f.text_field :comentario %>
+							  </div>
+
+							  <div class="field">
+							    <%= f.label :post_id %>
+							    <%= f.text_field :post_id %>
+							  </div>
+
+							  <div class="field">
+							    <%= f.label :user_id %>
+							    <%= f.text_field :user_id %>
+							  </div>
+
+							  <div class="actions">
+							    <%= f.submit %>
+							  </div>
+							<% end %>
+
 				            </div>
 				          
 				        </div>

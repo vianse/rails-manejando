@@ -16,6 +16,7 @@ class DriversController < ApplicationController
   # GET /drivers/new
   def new
     @driver = Driver.new
+    @comentario = Comentario.new
   end
 
   # GET /drivers/1/edit
