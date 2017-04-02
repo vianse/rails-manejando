@@ -1,6 +1,7 @@
 class HomeController < ApplicationController	
 	def index
 		  @driver = Driver.new
+		  @comentario = Comentario.new
 	end
 	def crear
 		@driver = Driver.create({

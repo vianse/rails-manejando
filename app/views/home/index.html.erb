@@ -256,6 +256,43 @@ a{
 	background-color: #A8DADC;
 	color: white;
 }
+ul
+{
+    list-style-type: none;
+
+}
+.listcomment{
+	display: flex;
+	flex-direction: column;
+	margin:0;
+	width: 100%;
+	padding-left: 0;
+}
+.list{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+	width: 100%;
+}
+.listcomentario{
+
+	justify-content: flex-start;
+	width: 100%;
+}
+.listavatar{
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  transform: scale(.7);
+  display: flex;
+  justify-content: flex-start;
+}
+.username{
+	margin-right: 5px;
+	font-size: 12px;
+
+}
 </style>
 <body>
 	<div class="main">
@@ -278,6 +315,7 @@ a{
 </body>
 </html>
 <script type="text/jsx">
+
 	var socket = io.connect('https://server-node-01.herokuapp.com/');
 	var url = ""
 	var CampoBusqueda = React.createClass({
@@ -286,9 +324,12 @@ a{
 	          etiqueta: "",
 	          data: [],
 	          name: "",
-	          conteo: ""
+	          conteo: "",
+	          request: [],
 	        }
 	    },
+	  
+	    
 	    componentDidMount: function(event) {
 	        /* socket.on('conteo', this.confirma);
 	        socket.on('nuevo', this.confirma);
@@ -320,6 +361,7 @@ a{
 		            }
 		        });
    		},
+
    		confirma: function() {
 	        $.ajax({
 	              url: "/api/v1/buscar_chofer?q=",
@@ -359,13 +401,23 @@ a{
 		busqueda: function(event) {
           this.setState({name: event.target.value});
         },
+        dialogo: function(postid){
+		     this.setState({postid: postid});
+		},
+		commentfun: function(request){
+			this.setState({request: request});
+		},
         
 		render: function(){
+		    var a = this.dialogo
 		    var b = this.enterado
 		    var c = this.state.conteo
 		    var x = this.conteo
+		    
 			var items = this.state.data.map(function(object){
 			   conteo(object.id);
+			   comentarios(object.id);
+			   var r = "comments" + object.id
 			   return <div className="contenedor_resultados">
 							<div className="contenedor_resultados_info">
 							<div className="publicado">
@@ -381,9 +433,13 @@ a{
 								<div className="footer_post">
 								<% if user_signed_in? %>
 									<button className="like" onClick={b.bind("postid, userid", object.id,  <%= current_user.id %>)}><i className="fa fa-check" aria-hidden="true"></i> Enterado <span id={object.id}></span></button>
-									<button className="comment" data-toggle="modal" data-target="#myModal2"><i className="fa fa-comments" aria-hidden="true"></i> Comentar</button>
+									<button className="comment" data-toggle="modal" data-target="#myModal2" onClick={a.bind("postid" , object.id)}><i className="fa fa-comments" aria-hidden="true"></i> Comentar</button>
 								<% end %>
 								</div>
+								
+								<div className="commentarios">Comentarios</div>
+								<ul id={r} className="listcomment"></ul>
+								
 							</div>
 						</div>
 			 });
@@ -468,27 +524,26 @@ a{
 				              <h4 className="modal-title" id="myModalLabel">Comentar</h4>
 				            </div>
 				            <div className="modal-body">
-				            <%= form_for @comentario.new do |f| %>
-					
-							  <div class="field">
-							    <%= f.label :comentario %>
-							    <%= f.text_field :comentario %>
-							  </div>
+				           <form class="new_comentario" id="new_comentario" action="/comentarios" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓" />
+						  <div class="field">
+						    <label for="comentario_comentario">Comentar</label>
+						    <textarea rows="5" cols="50" name="comentario[comentario]" id="comentario_comentario" className="form-control">
+							    </textarea>
+						    
+						  </div>
 
-							  <div class="field">
-							    <%= f.label :post_id %>
-							    <%= f.text_field :post_id %>
-							  </div>
+						  <div class="field">
+						    <input type="hidden" name="comentario[post_id]" id="comentario_post_id" className="form-control" value={this.state.postid}/>
+						  </div>
 
-							  <div class="field">
-							    <%= f.label :user_id %>
-							    <%= f.text_field :user_id %>
-							  </div>
+						  <div class="field">
+						    <input type="hidden" name="comentario[user_id]" id="comentario_user_id" className="form-control" value="<%= current_user.id %>" />
+						  </div>
 
-							  <div class="actions">
-							    <%= f.submit %>
-							  </div>
-							<% end %>
+						  <div class="actions">
+						    <input type="submit" name="commit" data-disable-with="Enviar" className= "btn btn_registra"/>
+						  </div>
+						</form>
 
 				            </div>
 				          
@@ -504,7 +559,7 @@ a{
 	React.render(<CampoBusqueda/> , document.getElementById('busqueda')); 
 </script>
 <script type="text/javascript">
-	function conteo(postid) {
+	  function conteo(postid) {
         	$.ajax({
               url: "/api/v1/conteo?postid=" + postid,
               dataType: 'json',
@@ -513,4 +568,16 @@ a{
               }
        		 });
    		}
+   		function comentarios(postid) {
+	        	$.ajax({
+	              url: "/api/v1/comentarios?postid=" + postid,
+	              dataType: 'json',
+	              success: function(request) {  
+	              	request.map(function(o){
+	              		$("#comments" + postid + "").append("<li class='list'><img class='listavatar' src=" + o.avatar + " /><span class='listcomentario'> <strong class='username'>" + o.user_name + "</strong>" + o.comentario + "</span></li>");
+	              	})
+	               
+	              }
+	       		 });
+	   		}
 </script>
