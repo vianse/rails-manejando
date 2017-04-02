@@ -521,9 +521,11 @@ ul
 				          <div className="modal-content">
 				            <div className="modal-header">
 				              <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
 				              <h4 className="modal-title" id="myModalLabel">Comentar</h4>
 				            </div>
 				            <div className="modal-body">
+				            <% if user_signed_in? %>
 				           <form class="new_comentario" id="new_comentario" action="/comentarios" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓" />
 						  <div class="field">
 						    <label for="comentario_comentario">Comentar</label>
@@ -544,7 +546,7 @@ ul
 						    <input type="submit" name="commit" data-disable-with="Enviar" className= "btn btn_registra"/>
 						  </div>
 						</form>
-
+						<% end %>
 				            </div>
 				          
 				        </div>
