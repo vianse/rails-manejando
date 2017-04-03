@@ -7,7 +7,6 @@ class Api::V1::ComentariosController <ApplicationController
  		:comentario => s.comentario,
  		:avatar => User.where(:id => s.user_id).pluck(:avatar).first,
  		:creado => s.created_at,
- 		:userid => s.user_id,
  		:user_name => User.where(:id => s.user_id).pluck(:name).first,
  	}
  	end
