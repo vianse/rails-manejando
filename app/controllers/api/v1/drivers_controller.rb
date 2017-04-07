@@ -3,7 +3,7 @@ class Api::V1::DriversController <ApplicationController
 
 	 def index
 	 	if params[:q].blank? || params[:q] == "undefined"
-	 		@choferes = Driver.all.limit(5).order("id desc")
+	 		@choferes = Driver.all.order("id desc")
 		 	choferes = @choferes.map do |v|
 		 	 @server = "https://res.cloudinary.com/vianse/"
 		 		{

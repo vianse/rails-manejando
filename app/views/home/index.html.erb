@@ -49,7 +49,7 @@ body{
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	 width: 50%;
+	 width: 80%;
 }
 .form_contenedor{
 	padding: 15px;
@@ -267,6 +267,7 @@ ul
 	margin:0;
 	width: 100%;
 	padding-left: 0;
+
 }
 .list{
 	display: flex;
@@ -276,9 +277,12 @@ ul
 	width: 100%;
 }
 .listcomentario{
-
+    box-sizing: border-box;
 	justify-content: flex-start;
 	width: 100%;
+	-moz-text-align-last: justify;
+	text-align-last: justify!important;
+	text-justify:inter-word!important;
 }
 .listavatar{
   width: 45px;
@@ -433,12 +437,10 @@ ul
 								<div className="footer_post">
 								<% if user_signed_in? %>
 									<button className="like" onClick={b.bind("postid, userid", object.id,  <%= current_user.id %>)}><i className="fa fa-check" aria-hidden="true"></i> Enterado <span id={object.id}></span></button>
-									<button className="comment" data-toggle="modal" data-target="#myModal2" onClick={a.bind("postid" , object.id)}><i className="fa fa-comments" aria-hidden="true"></i> Comentar</button>
+									
 								<% end %>
 								</div>
 								
-								<div className="commentarios">Comentarios</div>
-								<ul id={r} className="listcomment"></ul>
 								
 							</div>
 						</div>
