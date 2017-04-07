@@ -463,9 +463,10 @@ ul
 				<button className="btn_registra" data-toggle="modal" data-target="#myModal1">1.- Inicia sesión para poder registrar un conductor</button>
 				<% end -%>
 				<h3> O </h3>
+ 				<strong>Vas a contratar a un chofer?, valida que no se encuentre aquí</strong>
+				<div className="form_contenedor">
 
-				<div className="form_contenedor">	
-					<input type="text" name="buscar" value={this.props.value} className="campo_busqueda" onChange={this.busqueda} placeholder="Válida a un mal chofer" />
+					<input type="text" name="buscar" value={this.props.value} className="campo_busqueda" onChange={this.busqueda} placeholder="Escribe el nombre del chofer" />
 					<button className="btn_buscar" onClick={this.enviar}><i className="fa fa-search" aria-hidden="true"></i></button>
 				</div>
 				<h3>Base de datos de Malos Choferes</h3>
