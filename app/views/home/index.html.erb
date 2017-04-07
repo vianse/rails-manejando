@@ -310,7 +310,7 @@ ul
 <body>
 	<div class="main">
 		<header class="cover">
-		 <div class="brand">Comunidad Manejando</div>
+		 <div class="brand">Comunidad Manejando | No de usuarios registrados <%= User.count(:id) %></div>
 		<% if user_signed_in? %>
 		 <div class="currentuser">
 		  <strong class="usuario"><%= current_user.email %> </strong>.
@@ -318,6 +318,7 @@ ul
 		  <%= link_to " Salir", destroy_user_session_path, method: :delete, :class => 'salir'  %>
 		  </div>
 		<% else %>
+		 <div>Formartos</div>
 		<% end %>
 		</header>
 	<div class="contenedor">
