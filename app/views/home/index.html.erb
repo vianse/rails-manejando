@@ -134,6 +134,15 @@ body{
 	padding: 10px;
 	font-size: 16px;
 }
+.btn_captura{
+	margin-top: 20px;
+	background-color: #FA7921;
+	color: white;
+	border-radius: 5px;
+	border-style: none;
+	padding: 10px;
+	font-size: 16px;
+}
 .btn_registra:focus{ outline: 0;}
 
 strong{
@@ -448,7 +457,11 @@ ul
 
 			return (
 				<div className="columnas">
-				<button className="btn_registra" data-toggle="modal" data-target="#myModal1">Registra un mal chofer</button>
+				 <% if user_signed_in? %>
+				 <button className="btn_captura" data-toggle="modal" data-target="#myModal1">Registra un mal chofer</button>
+				<%  else %>
+				<button className="btn_registra" data-toggle="modal" data-target="#myModal1">1.- Inicia sesión para poder registrar un conductor</button>
+				<% end -%>
 				<h3> O </h3>
 
 				<div className="form_contenedor">	
