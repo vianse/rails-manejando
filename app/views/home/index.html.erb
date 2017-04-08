@@ -446,7 +446,8 @@ ul
 								<div className="footer_post">
 								<% if user_signed_in? %>
 									<button className="like" onClick={b.bind("postid, userid", object.id,  <%= current_user.id %>)}><i className="fa fa-check" aria-hidden="true"></i> Enterado <span id={object.id}></span></button>
-									
+								<% else %>
+									<div><i className="fa fa-check" aria-hidden="true"></i> Enterado <span id={object.id}></span></div>
 								<% end %>
 								</div>
 								
